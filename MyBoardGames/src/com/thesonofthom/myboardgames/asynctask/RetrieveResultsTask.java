@@ -1,8 +1,5 @@
 package com.thesonofthom.myboardgames.asynctask;
 
-import java.util.List;
-
-import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.adapters.GameListAdapter;
 import com.thesonofthom.myboardgames.bgg.BGGXMLParser;
@@ -11,7 +8,6 @@ import com.thesonofthom.myboardgames.fragments.BaseFragment;
 import com.thesonofthom.myboardgames.tools.Filter;
 import com.thesonofthom.myboardgames.tools.InternetTools;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -127,7 +123,6 @@ public abstract class RetrieveResultsTask extends DialogAsyncTask<Void>
 			adapter.notifyDataSetChanged();
 		}
 		fragment.updateTitle();
-		//restorePosition();
 		Log.i(TAG, "Done");
 	}
 	

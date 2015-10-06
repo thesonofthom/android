@@ -3,13 +3,9 @@ package com.thesonofthom.myboardgames.asynctask;
 import java.util.ArrayList;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.Settings;
 import com.thesonofthom.myboardgames.activities.MainActivity;
 import com.thesonofthom.myboardgames.tools.InternetTools;
@@ -106,7 +102,6 @@ public abstract class DialogAsyncTask<Params> extends AsyncTaskExceptionHandler<
 	@Override
 	public void updateProgress(String... values)
 	{
-		// TODO Auto-generated method stub
 		for(String value : values)
 		{
 			Log.i(TAG, "Update Progress: " + value);
@@ -129,8 +124,7 @@ public abstract class DialogAsyncTask<Params> extends AsyncTaskExceptionHandler<
 	@Override
 	public void performOnCancelled(TaskResult result)
 	{
-		// TODO Auto-generated method stub
-		
+		//nothing to do
 	}
 	
 	public abstract void doPreExecute();

@@ -35,7 +35,6 @@ public class MyFriendsFragment extends BaseFragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreateView(inflater, container, savedInstanceState);
 		if(mainView == null)
 		{
@@ -60,7 +59,6 @@ public class MyFriendsFragment extends BaseFragment
 				@Override
 				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
 				{
-					// TODO Auto-generated method stub
 					super.onLoadFinished(loader, data);
 					updateTitle();
 				}

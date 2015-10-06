@@ -3,18 +3,15 @@ package com.thesonofthom.myboardgames.fragments;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.adapters.ContactListAdapter;
 import com.thesonofthom.myboardgames.tools.ContactLoader;
 import com.thesonofthom.myboardgames.tools.ContactsQuery;
 import com.thesonofthom.myboardgames.tools.Filter;
@@ -53,7 +50,6 @@ public class FriendGameListFragment extends LocalGamesFragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		boolean mainViewWasNull = (mainView == null);
 		super.onCreateView(inflater, container, savedInstanceState);
 		if(mainViewWasNull)
@@ -88,7 +84,6 @@ public class FriendGameListFragment extends LocalGamesFragment
 	@Override
 	public void setupEmptyView()
 	{
-		// TODO Auto-generated method stub
 		emptyView_sadFace.setVisibility(View.GONE);
 		emptyView_sadFace = null;
 		
@@ -100,7 +95,6 @@ public class FriendGameListFragment extends LocalGamesFragment
 	@Override
 	public void onPrepareOptionsMenu(Menu menu)
 	{
-		// TODO Auto-generated method stub
 		super.onPrepareOptionsMenu(menu);
 		filterItems.setEnabled(false).setVisible(false);
 		reloadGamesIcon.setEnabled(false).setVisible(false);

@@ -1,33 +1,11 @@
 package com.thesonofthom.myboardgames.activities;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import com.thesonofthom.myboardgames.GamePool;
-import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.GamePool.GameGroup;
-import com.thesonofthom.myboardgames.adapters.GameListAdapter;
-import com.thesonofthom.myboardgames.asynctask.RemoveGamesTask;
-import com.thesonofthom.myboardgames.fragments.GameSearchFragment;
-import com.thesonofthom.myboardgames.fragments.SettingsFragment;
-import com.thesonofthom.myboardgames.tools.FragmentTools;
-
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
 public abstract class BaseActivity extends Activity
 {
@@ -127,7 +105,6 @@ public abstract class BaseActivity extends Activity
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "onRestoreInstanceState: " + savedInstanceState);
 		super.onRestoreInstanceState(savedInstanceState);
 		
@@ -166,7 +143,6 @@ public abstract class BaseActivity extends Activity
 	@Override
 	protected void onPause()
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "onPause()...");
 		super.onPause();
 	}

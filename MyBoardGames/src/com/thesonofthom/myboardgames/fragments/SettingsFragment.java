@@ -1,9 +1,7 @@
 package com.thesonofthom.myboardgames.fragments;
 
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.R.xml;
 import com.thesonofthom.myboardgames.Settings;
-import com.thesonofthom.myboardgames.activities.BaseActivity.Navigation;
 import com.thesonofthom.myboardgames.activities.MainActivity;
 
 import android.content.SharedPreferences;
@@ -39,7 +37,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		View view =  super.onCreateView(inflater, container, savedInstanceState);
 		a.getActionBar().setHomeButtonEnabled(true);
 		a.getToggle().setDrawerIndicatorEnabled(false);

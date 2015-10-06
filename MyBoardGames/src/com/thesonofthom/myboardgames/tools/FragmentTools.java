@@ -3,11 +3,9 @@ package com.thesonofthom.myboardgames.tools;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.activities.MainActivity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 
 public class FragmentTools
 {

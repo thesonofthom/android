@@ -16,7 +16,6 @@ public class GamesOnLoanFragment extends LocalGamesFragment
 	@Override
 	public void setupEmptyView()
 	{
-		// TODO Auto-generated method stub
 		emptyView_sadFace.setVisibility(View.GONE);
 		emptyView_sadFace = null;
 		

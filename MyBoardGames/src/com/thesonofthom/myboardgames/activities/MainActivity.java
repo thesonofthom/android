@@ -5,9 +5,7 @@ import java.util.List;
 
 import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.activities.BaseActivity.Navigation;
 import com.thesonofthom.myboardgames.adapters.GameAdapter;
-import com.thesonofthom.myboardgames.asynctask.LoadGamesTask;
 import com.thesonofthom.myboardgames.fragments.AllGamesFragment;
 import com.thesonofthom.myboardgames.fragments.GameSearchFragment;
 import com.thesonofthom.myboardgames.fragments.GamesOnLoanFragment;
@@ -22,7 +20,6 @@ import com.thesonofthom.myboardgames.tools.FragmentTools;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -32,14 +29,11 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends BaseActivity
 {
@@ -69,7 +63,6 @@ public class MainActivity extends BaseActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		getActionBar().show();
@@ -183,55 +176,24 @@ public class MainActivity extends BaseActivity
 	}
 	
 	
-	
-	@Override
-	protected void onSaveInstanceState(Bundle outState)
-	{
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-		GamePool.getInstance().saveState(outState);
-	}
-	
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState)
-	{
-		// TODO Auto-generated method stub
-		super.onRestoreInstanceState(savedInstanceState);
-		GamePool.getInstance().restoreState(savedInstanceState);
-	}
-	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// TODO Auto-generated method stub
-        //MenuInflater inflater = getMenuInflater();
-        //inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
 	public boolean onOptionsItemSelected(MenuItem item) {
         // The action bar home/up action should open or close the drawer.
         // ActionBarDrawerToggle will take care of this.
     	if(mDrawerToggle.isDrawerIndicatorEnabled())
     	{
-    	       if (mDrawerToggle.onOptionsItemSelected(item)) 
-    	       {
-    	           return true;
-    	       }
+	       if (mDrawerToggle.onOptionsItemSelected(item)) 
+	       {
+	           return true;
+	       }
     	}
     	switch (item.getItemId())
     	{
-    	case R.id.action_settings:
-    		FragmentTools.transitionToFragment(this, new SettingsFragment(), null);
-    		//transitionToFragment(Navigation.Settings, true);
-    		return true;
-//    	        case android.R.id.home:
-//    	            onBackPressed();
-//    	            return true;
-    		default:
-    			return super.onOptionsItemSelected(item);
-    		}
+	    	case R.id.action_settings:
+	    		FragmentTools.transitionToFragment(this, new SettingsFragment(), null);
+	    		return true;
+	    	default:
+				return super.onOptionsItemSelected(item);
+		}
    }
     
     @Override
@@ -296,10 +258,7 @@ public class MainActivity extends BaseActivity
 		    FragmentManager fragmentManager = getFragmentManager();
 		    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		    fragmentTransaction.replace(R.id.content_frame, fragment, choice.getTag());
-//		    if(pushToBackStack)
-//		    {
-//	    	fragmentTransaction.addToBackStack(null);
-//		    }
+
 		    while(fragmentManager.popBackStackImmediate())
 		    {
 		    	//keep popping until there is nothing left on the back stack
@@ -367,14 +326,14 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onStart()
     {
-    	// TODO Auto-generated method stub
+    	//this is called every single time the user relaunches the app
+    	//If Android has killed any part of our memory, reload the splash screen and read the games into memory again
     	super.onStart();
     	if(!GamePool.getInstance().verifyState(this))
     	{
     		Log.w(TAG, "Game pool memory is invalid! Reloading games!");
     		launchSplashScreen();
     	}
-
     	//otherwise, memory is ok
     }
     

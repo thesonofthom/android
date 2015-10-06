@@ -2,20 +2,10 @@ package com.thesonofthom.myboardgames.bgg;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,17 +14,19 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
-import com.thesonofthom.myboardgames.GameSorter;
 import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.asynctask.AsyncTaskFixed;
 import com.thesonofthom.myboardgames.asynctask.DialogAsyncTask;
+
+/*
+ * Class to parse the xml data retrived from BoardGameGeek.com's XML API
+ * See: http://boardgamegeek.com/wiki/page/BGG_XML_API
+ */
 
 public class BGGXMLParser
 {
@@ -135,7 +127,6 @@ public class BGGXMLParser
 			}
 			
 			boolean validGame = false;
-			boolean containsComments = false;
 			NodeList properties = boardGame.getChildNodes();
 			for(int j = 0; j < properties.getLength(); j++)
 			{
@@ -231,37 +222,15 @@ public class BGGXMLParser
 						}
 					}
 					
-					
-
-//					if(propertyEnum == Property.comment)
-//					{
-//						//special handling for comment
-//						if(property.hasAttributes())
-//						{
-//							Node username = property.getAttributes().getNamedItem("username");
-//							Node rating = property.getAttributes().getNamedItem("rating");
-//							if(username != null && rating != null)
-//							{
-//								containsComments = true;
-//								game.addComment(username.getNodeValue(), rating.getNodeValue(), propertyValue);
-//							}
-//						}
-//					}
-//					else
-//					{
-						//if we get to this point, this is a valid property and we need to add it to the game
-						if(pobjectid == null)
-						{
-							game.add(propertyEnum, propertyValue);
-						}
-						else
-						{
-							game.add(propertyEnum, pobjectid, propertyValue);
-						}
-						
-//					}
-					
-
+					//if we get to this point, this is a valid property and we need to add it to the game
+					if(pobjectid == null)
+					{
+						game.add(propertyEnum, propertyValue);
+					}
+					else
+					{
+						game.add(propertyEnum, pobjectid, propertyValue);
+					}
 				}
 			}
 			
@@ -271,14 +240,7 @@ public class BGGXMLParser
 			}
 			else if(type == XMLType.GAME_INFO)
 			{
-				if(containsComments)
-				{
-					game.setStatus(Game.STATUS_FULL_WITH_COMMENTS);
-				}
-				else
-				{
-					game.setStatus(Game.STATUS_FULL);
-				}
+				game.setStatus(Game.STATUS_FULL);
 			}
 			
 			if(validGame)
@@ -294,10 +256,5 @@ public class BGGXMLParser
 		Log.i(TAG, "Done parsing XML");
 		return success;
 	}
-	
-//	public List<Game> parseUserCollection(String xml) throws ParserConfigurationException, SAXException, IOException
-//	{
-//		Document doc = parseXml(xml);
-//		return null; //TODO
-//	}
+
 }

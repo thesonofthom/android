@@ -6,8 +6,6 @@ import java.util.List;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
-
 import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.Game.Property;
@@ -361,7 +359,6 @@ public class Filter implements Parcelable
 	@Override
 	public int describeContents()
 	{
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
@@ -375,8 +372,6 @@ public class Filter implements Parcelable
 		}	
 		
 		boolean filterPlayingTime = isFilterActive(FilterOption.Playing_Time);
-		//p.writeInt(initialMinPlayingTime);
-		//p.writeInt(initialMaxPlayingTime);
 		ParcelTools.writeBoolean(p, filterPlayingTime);
 		if(filterPlayingTime)
 		{
@@ -385,8 +380,6 @@ public class Filter implements Parcelable
 		}
 		
 		boolean filterYear = isFilterActive(FilterOption.Year_Published);
-		//p.writeInt(initialMinYear);
-		//p.writeInt(initialMaxYear);
 		ParcelTools.writeBoolean(p, filterYear);
 		if(filterYear)
 		{
@@ -394,7 +387,6 @@ public class Filter implements Parcelable
 			p.writeInt(maxYear);
 		}
 		
-		//p.writeStringList(allCategories);
 		p.writeStringList(categories);
 	}
 	
@@ -406,8 +398,6 @@ public class Filter implements Parcelable
 			numberOfPlayers = p.readInt();
 		}
 		
-		//initialMinPlayingTime = p.readInt();
-		//initialMaxPlayingTime = p.readInt();
 		boolean filterPlayingTime = ParcelTools.readBoolean(p);
 		if(filterPlayingTime)
 		{
@@ -415,8 +405,6 @@ public class Filter implements Parcelable
 			maxPlayingTime = p.readInt();
 		}
 		
-		//initialMinYear = p.readInt();
-		//initialMaxYear = p.readInt();
 		boolean  filterYear = ParcelTools.readBoolean(p);
 		if(filterYear)
 		{
@@ -424,7 +412,6 @@ public class Filter implements Parcelable
 			maxYear = p.readInt();
 		}
 		
-		//allCategories = p.createStringArrayList();
 		categories = p.createStringArrayList();
 	}
 

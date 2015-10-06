@@ -3,18 +3,14 @@ package com.thesonofthom.myboardgames.asynctask;
 import java.io.File;
 import java.io.IOException;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.Game.Property;
-import com.thesonofthom.myboardgames.bgg.BGGXMLWriter;
-import com.thesonofthom.myboardgames.fragments.BaseFragment;
 import com.thesonofthom.myboardgames.fragments.GameInfoFragment;
 import com.thesonofthom.myboardgames.fragments.LocalGamesFragment;
-import com.thesonofthom.myboardgames.fragments.MyGamesFragment;
 import com.thesonofthom.myboardgames.tools.FileTools;
 
 
@@ -39,7 +35,6 @@ public class RemoveGamesTask extends DialogAsyncTask<Game>
 	@Override
 	public void doPreExecute()
 	{
-		// TODO Auto-generated method stub
 		if(gameInfoFragment != null)
 		{
 			gameInfoFragment.setRefreshActionItemState(true);
@@ -115,8 +110,6 @@ public class RemoveGamesTask extends DialogAsyncTask<Game>
 	@Override
 	public void doPostExecute(TaskResult result)
 	{
-		// TODO Auto-generated method stub
-		
 		if(result != null)
 		{
 			if(gameInfoFragment != null)
@@ -138,7 +131,6 @@ public class RemoveGamesTask extends DialogAsyncTask<Game>
 	@Override
 	public String getDialogText()
 	{
-		// TODO Auto-generated method stub
 		return "Removing games from library...";
 	}
 }

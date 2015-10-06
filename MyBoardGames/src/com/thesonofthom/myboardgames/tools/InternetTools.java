@@ -3,8 +3,6 @@ package com.thesonofthom.myboardgames.tools;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.http.HttpEntity;
@@ -17,14 +15,10 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.Settings;
 import com.thesonofthom.myboardgames.asynctask.DialogAsyncTask;
 import com.thesonofthom.myboardgames.bgg.BGGXMLParser;
 import com.thesonofthom.myboardgames.bgg.BGGXMLParser.XMLType;
@@ -32,18 +26,13 @@ import com.thesonofthom.myboardgames.bgg.BGGXMLParser.XMLType;
 public class InternetTools
 {
 	public static final String TAG = "InternetTools";
-	private Context context;
 
 	private Resources r;
-	private Settings settings;
-	DialogAsyncTask task;
+	DialogAsyncTask<?> task;
 	
-	public InternetTools(Context context, DialogAsyncTask task)
+	public InternetTools(Context context, DialogAsyncTask<?> task)
 	{
-		this.context = context;
-
 		r = context.getResources();
-		settings = new Settings(context);
 		this.task = task;
 	}
 	
@@ -59,18 +48,6 @@ public class InternetTools
 		HttpEntity httpEntity = httpResponse.getEntity();
 		String text = EntityUtils.toString(httpEntity);
 		Log.i(TAG, "Done");
-
-		// if(text != null)
-		// {
-		// //fix the "only one root element allowed error
-		// int endOfHeader = text.indexOf("?>") + 2;
-		// String header = text.substring(0, endOfHeader);
-		// String xmlBody = text.substring(endOfHeader);
-		// text = header + "<root>" + xmlBody + "</root>";
-		// Log.i(TAG, text.substring(0, endOfHeader + 10));
-		// Log.i(TAG, text.substring(text.length() - 20));
-		// }
-		//
 		return text;
 	}
 	
@@ -152,8 +129,6 @@ public class InternetTools
 			//if the status is at least full, we have already retrieved the full data on the game
 			currentPosition++;
 		}
-		//cache.setPosition(currentPosition);
-
 		return objectIds;
 	}
 }

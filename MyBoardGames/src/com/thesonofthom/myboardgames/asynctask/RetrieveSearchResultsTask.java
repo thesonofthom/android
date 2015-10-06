@@ -3,14 +3,12 @@ package com.thesonofthom.myboardgames.asynctask;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
 import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.GameCache;
-import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.bgg.BGGXMLParser.XMLType;
 import com.thesonofthom.myboardgames.fragments.GameSearchFragment;
 

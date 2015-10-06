@@ -2,7 +2,6 @@ package com.thesonofthom.myboardgames.asynctask;
 
 import com.thesonofthom.myboardgames.activities.MainActivity;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,7 +12,6 @@ public abstract class AsyncTaskExceptionHandler<Params, Progress> extends AsyncT
 	{
 		super(tag);
 		this.context = context;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -33,7 +31,6 @@ public abstract class AsyncTaskExceptionHandler<Params, Progress> extends AsyncT
 	@Override
 	protected void performOnPostExecute(TaskResult result)
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "Result: " + result);
 		if(result == null )
 		{
@@ -53,7 +50,6 @@ public abstract class AsyncTaskExceptionHandler<Params, Progress> extends AsyncT
 	@Override
 	public void performOnCancelled(TaskResult result)
 	{
-		// TODO Auto-generated method stub
 		Toast.makeText(context, "Cancelled...", Toast.LENGTH_SHORT).show();
 	}
 	

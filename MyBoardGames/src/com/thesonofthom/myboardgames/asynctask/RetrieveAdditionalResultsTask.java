@@ -1,6 +1,5 @@
 package com.thesonofthom.myboardgames.asynctask;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.thesonofthom.myboardgames.GameCache;
@@ -14,11 +13,11 @@ public class RetrieveAdditionalResultsTask extends DialogAsyncTask<Void>
 	 * restoring which element the user was looking at in the process
 	 */
 	private static final String TAG = "RetrieveAdditionalResultsTask";
-	private DialogAsyncTask relatedTask;
+	private DialogAsyncTask<?> relatedTask;
 	private GameCache cache;
 	protected BGGXMLParser parser;
 
-	public RetrieveAdditionalResultsTask(MainActivity context, GameCache cache, DialogAsyncTask relatedTask)
+	public RetrieveAdditionalResultsTask(MainActivity context, GameCache cache, DialogAsyncTask<?> relatedTask)
 	{
 		super(context, TAG);
 		this.relatedTask = relatedTask;

@@ -1,26 +1,14 @@
 package com.thesonofthom.myboardgames.fragments;
 
-import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.activities.MainActivity;
-import com.thesonofthom.myboardgames.adapters.ContactListAdapter;
-import com.thesonofthom.myboardgames.fragments.FilterDialogFragment.FilterDialogListener;
 import com.thesonofthom.myboardgames.tools.ContactLoader;
-import com.thesonofthom.myboardgames.tools.ContactsQuery;
-import com.thesonofthom.myboardgames.tools.Filter;
-import com.thesonofthom.myboardgames.tools.FragmentTools;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,7 +47,6 @@ public abstract class ContactListDialogFragment extends DialogFragment
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		final MainActivity activity = (MainActivity)getActivity();
 		loader = new ContactLoader(activity)
 		{
@@ -73,7 +60,6 @@ public abstract class ContactListDialogFragment extends DialogFragment
 			@Override
 			public int getQueryId()
 			{
-				// TODO Auto-generated method stub
 				return ContactListDialogFragment.this.getQueryId();
 			}
 		};
@@ -135,7 +121,6 @@ public abstract class ContactListDialogFragment extends DialogFragment
 	@Override
 	public void onDestroy()
 	{
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 	

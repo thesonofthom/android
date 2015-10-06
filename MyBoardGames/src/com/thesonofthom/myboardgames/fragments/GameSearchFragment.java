@@ -45,8 +45,6 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 	
 	private GameCache cache;
 	
-	private static String cacheName = "Search Result Cache";
-	
 	public TextView getSearchQuery()
 	{
 		return searchQuery;
@@ -67,9 +65,7 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		//a.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		searchResultsTask = null;
 		cache = GamePool.getInstance().getSearchCache();
 		query = GamePool.getInstance().getQuery();
@@ -83,7 +79,6 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		//a.setContentView(R.layout.activity_game_list);
 		if (mainView == null)
 		{
 			Log.i(TAG, "Inflating view...");
@@ -120,9 +115,6 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 					Fragment gameFragment = new GameInfoFragment();
 					FragmentTools.transitionToFragment(a, gameFragment, null);
 					
-					//Intent intent = new Intent(a, GameInfoActivity.class);
-					//GameInfoActivity.setGame(game);
-					//startActivity(intent);
 				}
 			});		
 	        searchQuery=(TextView)mainView.findViewById(R.id.search_query);
@@ -146,41 +138,7 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 
         return mainView;
 	}
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
-		// TODO Auto-generated method stub
-		super.onActivityCreated(savedInstanceState);
-	}
-	
 
-	
-	private static final String GAME_CACHE = "GAME_CACHE";
-	private static final String QUERY = "QUERY";
-	
-	@Override
-	public void onSaveInstanceState(Bundle outState)
-	{
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-		//Log.i(TAG, "onSaveInstanceState has been called: " + query);
-		//outState.putString(QUERY, query);
-//		outState.putParcelable(GAME_CACHE, cache);
-//		Log.i(TAG, "BUNDLE: " + outState);
-	}
-	
-	@Override
-	public void restoreInstanceState(Bundle savedInstanceState)
-	{
-		super.restoreInstanceState(savedInstanceState);
-		if(savedInstanceState != null)
-		{
-			//query = savedInstanceState.getString(QUERY);
-			//Log.i(TAG, "Saved query: " + query);
-//			cache = savedInstanceState.getParcelable(GAME_CACHE);
-		}
-	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) 
@@ -192,42 +150,12 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
         setupSearchView((SearchView) searchItem.getActionView());
 	}
 	
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item)
-//	{
-//		// TODO Auto-generated method stub
-//		Log.i(TAG, item + "menu option selected");
-//		switch (item.getItemId())
-//		{
-//			case R.id.action_settings:
-//				startActivity(new Intent(this, SettingsActivity.class));
-//				return true;
-//			default:
-//				return super.onOptionsItemSelected(item);
-//		}
-//		
-//	}
 	
     private void setupSearchView(SearchView view) 
     {
     	searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
                     | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
     	view.setSubmitButtonEnabled(true);
-
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        if (searchManager != null) {
-//            List<SearchableInfo> searchables = searchManager.getSearchablesInGlobalSearch();
-//
-//            // Try to use the "applications" global search provider
-//            SearchableInfo info = searchManager.getSearchableInfo(getComponentName());
-//            for (SearchableInfo inf : searchables) {
-//                if (inf.getSuggestAuthority() != null
-//                        && inf.getSuggestAuthority().startsWith("applications")) {
-//                    info = inf;
-//                }
-//            }
-//            mSearchView.setSearchableInfo(info);
-//        }
 
     	view.setOnQueryTextListener(this);
     }
@@ -236,7 +164,6 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 	@Override
 	public boolean onQueryTextChange(String newText)
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -246,11 +173,11 @@ public class GameSearchFragment extends BaseFragment  implements SearchView.OnQu
 		searchResultsTask = task;
 		GamePool.getInstance().setQuery(task.getQuery());
 		query = GamePool.getInstance().getQuery();
-		//query = task.getQuery();
+
 		
 		GamePool.getInstance().setSearchResultsCache(task.getCache());
 		cache = GamePool.getInstance().getSearchCache();
-		//cache = task.getCache();
+
 		Log.i(TAG, "Updating data to reflect new search: " + query);
 		Log.i(TAG, cache.toString());
 	}

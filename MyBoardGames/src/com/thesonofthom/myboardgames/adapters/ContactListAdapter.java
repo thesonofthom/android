@@ -6,13 +6,9 @@ import com.thesonofthom.myboardgames.activities.MainActivity;
 import com.thesonofthom.myboardgames.tools.ContactLoader;
 import com.thesonofthom.myboardgames.tools.ContactsQuery;
 
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,7 +37,6 @@ public class ContactListAdapter extends CursorAdapter  implements SectionIndexer
 		this.loader = loader;
 		final String alphabet = activity.getString(R.string.alphabet);
 		 mAlphabetIndexer = new AlphabetIndexer(null, ContactsQuery.SORT_KEY, alphabet);
-		// TODO Auto-generated constructor stub
 	}
 	
     private class ViewHolder {
@@ -55,7 +50,6 @@ public class ContactListAdapter extends CursorAdapter  implements SectionIndexer
 		//Log.i(TAG, "bindView: cursor="+cursor);
 		
 		 final ViewHolder holder = (ViewHolder) view.getTag();
-		// TODO Auto-generated method stub
 		int photoUriColumnIndex = ContactsQuery.PHOTO_THUMBNAIL_DATA;//cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI);
         final String photoUri = cursor.getString(photoUriColumnIndex);
         //Log.i(TAG, "Photo URI: index="+photoUriColumnIndex +", " + photoUri);

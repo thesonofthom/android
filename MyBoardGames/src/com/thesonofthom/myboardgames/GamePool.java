@@ -6,13 +6,10 @@ import java.util.HashMap;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.GameSorter.SortOption;
 import com.thesonofthom.myboardgames.GameSorter.SortOrder;
-import com.thesonofthom.myboardgames.activities.BaseActivity.Navigation;
 import com.thesonofthom.myboardgames.activities.MainActivity;
 import com.thesonofthom.myboardgames.asynctask.LoadGamesTask;
 import com.thesonofthom.myboardgames.tools.Filter;
 
-import android.location.GpsStatus.NmeaListener;
-import android.os.Bundle;
 import android.util.Log;
 
 public class GamePool
@@ -266,49 +263,5 @@ public class GamePool
 	public void unlock()
 	{
 		lock = false;
-	}
-	
-	private static final String LOCAL_GAMES = "LOCAL_GAMES";
-	private static final String FILTER(GameGroup group) {return "FILTER_"+group.name();}
-	public void saveState(Bundle bundle)
-	{
-//		for(GameGroup group : GameGroup.values())
-//		{
-//			bundle.putParcelable(FILTER(group), getFilter(group));
-//		}
-//		
-//		for(Game game : getCache(GameGroup.AllSavedGames).getList())
-//		{
-//			game.setParcelMode(ParcelMode.MODE_LIST);
-//		}
-//		bundle.putParcelable(LOCAL_GAMES, getCache(GameGroup.AllSavedGames));
-//		Log.i(TAG, "BUNDLE: " + bundle);
-	}
-	
-	public void restoreState(Bundle bundle)
-	{
-//		if (bundle != null)
-//		{
-//			restoreLock = true;
-//			Log.i(TAG, "BUNDLE: " + bundle);
-//			for (GameGroup group : GameGroup.values())
-//			{
-//				filters[group.ordinal()] = bundle.getParcelable(FILTER(group));
-//			}
-//			GameCache games = bundle.getParcelable(LOCAL_GAMES);
-//			if (games != null)
-//			{
-//				for (Game game : games.getList())
-//				{
-//					addLocalGame(game);
-//				}
-//			}
-//			
-//			for (GameGroup group : GameGroup.values())
-//			{
-//				filters[group.ordinal()].recalculateInitialValues(getCache(group));
-//			}
-//			restoreLock = false;
-//		}
 	}
 }

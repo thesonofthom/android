@@ -2,9 +2,6 @@ package com.thesonofthom.myboardgames.fragments;
 
 
 import com.thesonofthom.myboardgames.R;
-import com.thesonofthom.myboardgames.tools.ContactsQuery;
-
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +23,6 @@ public class WebViewFragment extends BaseFragment
 	public WebViewFragment()
 	{
 		super(TAG, null);
-		// TODO Auto-generated constructor stub
 	}
 	
 	private static final String TITLE = "TITLE";
@@ -45,7 +41,6 @@ public class WebViewFragment extends BaseFragment
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		title = getArguments().getString(TITLE);
 		
@@ -63,7 +58,6 @@ public class WebViewFragment extends BaseFragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		a.getActionBar().setHomeButtonEnabled(true);
 		getToggle().setDrawerIndicatorEnabled(false);
 		if(view == null)
@@ -81,7 +75,6 @@ public class WebViewFragment extends BaseFragment
 	@Override
 	public void onSaveInstanceState(Bundle outState)
 	{
-		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
 		outState.putString(URL, url);
 		outState.putString(TITLE, title);
@@ -90,7 +83,6 @@ public class WebViewFragment extends BaseFragment
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		if(savedInstanceState == null)
 		{
@@ -113,7 +105,6 @@ public class WebViewFragment extends BaseFragment
 	@Override
 	public void onPrepareOptionsMenu(Menu menu)
 	{
-		// TODO Auto-generated method stub
 		super.onPrepareOptionsMenu(menu);
 		menu.findItem(R.id.action_settings).setVisible(false);
 	}

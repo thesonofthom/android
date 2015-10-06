@@ -4,9 +4,7 @@ import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.Settings;
 import com.thesonofthom.myboardgames.activities.BaseActivity.Navigation;
 import com.thesonofthom.myboardgames.activities.MainActivity;
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Loader;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -68,21 +66,11 @@ public abstract class BaseFragment extends Fragment
 	}
 	
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
-		// TODO Auto-generated method stub
-		Log.i(TAG, "onActivityCreated: " + savedInstanceState);
-		super.onActivityCreated(savedInstanceState);
-		//restoreInstanceState(savedInstanceState);
-	}
-	
-	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		Log.i(TAG, "onCreate(): " + savedInstanceState);
 		super.onCreate(savedInstanceState);
 		a = (MainActivity)getActivity();
-		settings = new Settings(a);
 		setHasOptionsMenu(true);
 		
 	}
@@ -132,7 +120,6 @@ public abstract class BaseFragment extends Fragment
 	@Override
 	public void onPause()
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "onPause()...");
 		super.onPause();
 	}
@@ -178,7 +165,6 @@ public abstract class BaseFragment extends Fragment
 	@Override
 	public void onPrepareOptionsMenu(Menu menu)
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "onPrepareOptionsMenu()...");
 		super.onPrepareOptionsMenu(menu);
 	}

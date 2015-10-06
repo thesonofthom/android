@@ -7,9 +7,6 @@ import android.app.Fragment;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Loader;
-import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 
 
@@ -55,7 +52,6 @@ public class MyFriendsContactListDialogFragment extends ContactListDialogFragmen
 	@Override
 	public int getQueryId()
 	{
-		// TODO Auto-generated method stub
 		return ContactsQuery.MY_FRIENDS_QUERY_DIALOG;
 	}
 

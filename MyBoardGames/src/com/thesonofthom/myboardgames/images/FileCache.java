@@ -2,7 +2,6 @@ package com.thesonofthom.myboardgames.images;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,13 +11,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.tools.FileTools;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 
 public class FileCache 

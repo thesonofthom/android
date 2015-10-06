@@ -7,7 +7,6 @@ import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.GameSorter;
-import com.thesonofthom.myboardgames.GamePool.GameGroup;
 import com.thesonofthom.myboardgames.GameSorter.SortOption;
 import com.thesonofthom.myboardgames.GameSorter.SortOrder;
 import com.thesonofthom.myboardgames.R;
@@ -25,14 +24,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -43,7 +40,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public abstract class LocalGamesFragment extends BaseFragment implements FilterDialogListener
@@ -81,7 +77,6 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 	@Override
 	public String getTitle()
 	{
-		// TODO Auto-generated method stub
 		String title = super.getTitle();
 		if(cache != null && cache.getSize() > 0)
 		{
@@ -106,7 +101,6 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreateView(inflater, container, savedInstanceState);
 		if(mainView == null)
 		{
@@ -218,7 +212,7 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 		if(cache.setSortOptions(option, order))
 		{
 			Log.i(TAG, "BEFORE SORT: " + cache);
-			//TODO: DO this on a background thread
+			//TODO: Do this on a background thread
 			GameSorter.sort(cache.getList(), option, order);
 			Log.i(TAG, "AFTER SORT: " + cache);
 			adapter = new GameListAdapter(a, cache, filter);
@@ -233,21 +227,11 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_game_list);
-		//setupActionBarNavigation();
-//		if(savedInstanceState == null)
-//		{
 			
-			cache = getCache();
-			filter = getFilter();
-			Log.i(TAG, cache.toString());
-			adapter = new GameListAdapter(a, cache, filter);
-			
-//		}
-//		else
-//		{
-//			restoreInstanceState(savedInstanceState);
-//		}
+		cache = getCache();
+		filter = getFilter();
+		Log.i(TAG, cache.toString());
+		adapter = new GameListAdapter(a, cache, filter);
 	}
 	
 	protected GameCache getCache()
@@ -260,35 +244,12 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 		return GamePool.getInstance().getFilter(fragmentType.getGroup());
 	}
 	
-//	private static final String MY_GAME_CACHE = "MY_GAME_CACHE";
-//	
-//	@Override
-//	public void onSaveInstanceState(Bundle outState)
-//	{
-//		// TODO Auto-generated method stub
-//		super.onSaveInstanceState(outState);
-//		outState.putParcelable(MY_GAME_CACHE, cache);
-//		Log.i(TAG, "BUNDLE: " + outState);
-//	}
-//	
-//	@Override
-//	public void restoreInstanceState(Bundle savedInstanceState)
-//	{
-//		super.restoreInstanceState(savedInstanceState);
-//		if(savedInstanceState != null)
-//		{
-//			cache = savedInstanceState.getParcelable(MY_GAME_CACHE);
-//			adapter = new GameListAdapter(getActivity(), cache);
-//		}
-//	}
-	
 	protected MenuItem filterItems;
 	protected MenuItem reloadGamesIcon;
 	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
-		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.gamelist, menu);
 		filterItems = menu.findItem(R.id.action_filter_games);
@@ -298,7 +259,6 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 	@Override
 	public void onPrepareOptionsMenu(Menu menu)
 	{
-		// TODO Auto-generated method stub
 		super.onPrepareOptionsMenu(menu);
 		if(cache.getSize() == 0)
 		{
@@ -313,7 +273,6 @@ public abstract class LocalGamesFragment extends BaseFragment implements FilterD
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		// TODO Auto-generated method stub
 		switch(item.getItemId())
 		{
 			case R.id.action_reload_game_list:

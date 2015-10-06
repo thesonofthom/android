@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,7 +14,6 @@ import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.activities.MainActivity;
 import com.thesonofthom.myboardgames.bgg.BGGXMLWriter;
 import com.thesonofthom.myboardgames.fragments.GameInfoFragment;
-import com.thesonofthom.myboardgames.images.FileCache;
 
 
 public class SaveGamesTask extends AsyncTaskExceptionHandler<Game, Void>//AsyncTaskFixed<Game, Void, String>
@@ -26,8 +24,6 @@ public class SaveGamesTask extends AsyncTaskExceptionHandler<Game, Void>//AsyncT
 	private BGGXMLWriter writer;
 	private boolean forceSaveGame;
 	private boolean forceSaveExpansions;
-	
-	private FileCache fileCache;
 	
 	private boolean showToast;
 	
@@ -43,7 +39,6 @@ public class SaveGamesTask extends AsyncTaskExceptionHandler<Game, Void>//AsyncT
 		this.forceSaveGame = forceSaveGame;
 		this.forceSaveExpansions = forceSaveExpansions;
 		showToast = false;
-		fileCache = context.getImageLoader().getFileCache();
 	}
 	
 	public SaveGamesTask(MainActivity context)

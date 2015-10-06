@@ -17,8 +17,6 @@ package com.thesonofthom.myboardgames.images;
  */
 
 
-import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,20 +24,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Contacts.Photo;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
 import android.widget.ImageView;
 
 
 import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import com.thesonofthom.myboardgames.activities.MainActivity;
@@ -315,7 +305,8 @@ public abstract class ContactImageLoader {
      * @param imageView The ImageView to set the bitmap to.
      * @param bitmap The new bitmap to set.
      */
-    private void setImageBitmap(ImageView imageView, Bitmap bitmap) {
+    @SuppressWarnings("deprecation")
+	private void setImageBitmap(ImageView imageView, Bitmap bitmap) {
         if (mFadeInBitmap) {
             // Transition drawable to fade from loading bitmap to final bitmap
             final TransitionDrawable td =

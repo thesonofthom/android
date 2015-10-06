@@ -30,7 +30,6 @@ public class LoadGamesTask extends AsyncTaskFixed<Void, Integer, Boolean>
 	private File gameDirectory;
 	private File[] gameList;
 	private BGGXMLParser parser;
-	private Activity activity;
 	
 	private SplashScreenActivity splashScreenActivity;
 	
@@ -38,7 +37,6 @@ public class LoadGamesTask extends AsyncTaskFixed<Void, Integer, Boolean>
 	{
 		super(TAG);
 		gameDirectory = activity.getExternalFilesDir(FileTools.GAME_STORAGE_DIRECTORY);
-		this.activity = activity;
 		parser = existingParser;
 		if(parser == null)
 		{
@@ -93,7 +91,7 @@ public class LoadGamesTask extends AsyncTaskFixed<Void, Integer, Boolean>
 	{
 		Game.enableDontMarkAsDirtyLock();
 		GamePool.getInstance().lock();
-		//to clear out any potential infinite loops, clear teh local game cache
+		//to clear out any potential infinite loops, clear the local game cache
 		GamePool.getInstance().getCache(GameGroup.AllSavedGames).clear();
 		for(int i = 0; i < gameList.length; i++)
 		{
@@ -147,7 +145,6 @@ public class LoadGamesTask extends AsyncTaskFixed<Void, Integer, Boolean>
 	@Override
 	protected void onProgressUpdate(Integer... values)
 	{
-		// TODO Auto-generated method stub
 		super.onProgressUpdate(values);
 		if(values.length > 0)
 		{
@@ -176,7 +173,6 @@ public class LoadGamesTask extends AsyncTaskFixed<Void, Integer, Boolean>
 	@Override
 	public void performOnCancelled(Boolean result)
 	{
-		// TODO Auto-generated method stub
-		
+		//nothing to do
 	}
 }

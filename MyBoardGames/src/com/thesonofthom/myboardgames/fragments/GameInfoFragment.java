@@ -8,7 +8,6 @@ import com.thesonofthom.myboardgames.GamePool.GameGroup;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.Settings;
-import com.thesonofthom.myboardgames.adapters.ContactListAdapter;
 import com.thesonofthom.myboardgames.asynctask.RemoveGamesTask;
 import com.thesonofthom.myboardgames.asynctask.RetrieveGameInfoTask;
 import com.thesonofthom.myboardgames.asynctask.SaveGamesTask;
@@ -18,14 +17,12 @@ import com.thesonofthom.myboardgames.tools.ContactsQuery;
 import com.thesonofthom.myboardgames.tools.FragmentTools;
 
 import android.app.AlertDialog;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -72,7 +69,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 	
 	private static Game currentGame;
 	
-	private Settings settings;
 	private View mRefreshIndeterminateProgressView = null;
 	
 	private MenuItem addRemoveGameItem;
@@ -179,10 +175,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 						setGame(game);
 						GameInfoFragment newGameFragment = new GameInfoFragment();
 						FragmentTools.transitionToFragment(a, newGameFragment, null);
-//						Intent intent = new Intent(GameInfoFragment.this, GameInfoFragment.class);
-//						//intent.putExtra(GameInfoActivity.GAME_KEY, game);
-//						GameInfoFragment.setGame(game);
-//						startActivity(intent);
 						return true;
 					}
 					else
@@ -252,34 +244,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 		return mainView;
 	}
 
-	private static String GAME = "GAME";
-
-	@Override
-	public void onSaveInstanceState(Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-//		outState.putInt(GAME, game.getObjectId());
-//		game.setParcelMode(ParcelMode.MODE_FULL);
-//		//outState.putParcelable(GAME, game);
-//		Log.i(TAG, outState.toString());
-	}
-	
-	@Override
-	protected void restoreInstanceState(Bundle savedInstanceState)
-	{
-		super.restoreInstanceState(savedInstanceState);
-//		if(savedInstanceState != null)
-//		{
-//			game = GamePool.getInstance().get(savedInstanceState.getInt(GAME));//savedInstanceState.getParcelable(GAME);//
-//			if(game != null)
-//			{
-//				gameInfoTask = new RetrieveGameInfoTask(this, game);
-//				gameInfoTask.doPostExecute(TaskResult.TRUE);
-//				updateAddRemoveIcon();
-//				updateOwnershipStatus();
-//			}
-//		}
-	}
 	
 	private void saveGame(boolean forceSave, boolean showToast)
 	{
@@ -419,7 +383,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
-    	// TODO Auto-generated method stub
     	super.onCreateOptionsMenu(menu, inflater);
     	inflater.inflate(R.menu.game, menu);
         addRemoveGameItem = menu.findItem(R.id.action_add_remove_game);
@@ -431,7 +394,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
     @Override
     public void onPrepareOptionsMenu(Menu menu)
     {
-    	// TODO Auto-generated method stub
     	super.onPrepareOptionsMenu(menu);
     	
     	if(game != null)
@@ -449,7 +411,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		// TODO Auto-generated method stub
 		switch(item.getItemId())
 		{
 			case R.id.action_add_remove_game:
@@ -527,7 +488,6 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 	@Override
 	public void contactChosen(Cursor c)
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "Contact chosen!");
 		Log.i(TAG, "Contact name: " + c.getString(ContactsQuery.DISPLAY_NAME));
 		
@@ -553,42 +513,4 @@ public class GameInfoFragment extends BaseFragment implements ContactListDialogL
 				mainDataView.collapseGroup(i);
 		}
 	}
-
-//	@Override
-//	public Loader<Cursor> onCreateLoader(int id, Bundle args)
-//	{
-//		Log.i(TAG, "onCreateLoader(), id: " + id + "...");
-//		String lookupKey = game.get(Property.loanContact_lookup_key);
-//		if(lookupKey != null)
-//		{
-//			Log.i(TAG, "LookupKey: " + lookupKey);
-//			return ContactsQuery.getContactLoader(a, lookupKey);//uri);
-//		}
-//		return null;
-//	}
-//	
-//	@Override
-//	public void onLoaderReset(Loader<Cursor> arg0)
-//	{
-//		Log.i(TAG, "onLoaderReset()...");
-//		contactAdapter.swapCursor(null);
-//	}
-//
-//	@Override
-//	public void onLoadFinished(Loader<Cursor> loader, Cursor data)
-//	{
-//		Log.i(TAG, "onLoadFinished()...");
-//		contactAdapter.swapCursor(data);
-//	}
-	
-
-	@Override
-	public void onDestroy()
-	{
-		// TODO Auto-generated method stub
-		//destroyLoader();
-		super.onDestroy();
-	}
-
-
 }

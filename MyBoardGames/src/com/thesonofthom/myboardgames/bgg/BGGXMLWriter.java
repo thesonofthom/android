@@ -25,7 +25,6 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.thesonofthom.myboardgames.Game;
-import com.thesonofthom.myboardgames.GamePool;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.Game.PropertyData;
@@ -38,14 +37,11 @@ public class BGGXMLWriter
 	
 	private Context context;
 	private Resources r;
-	private File directory;
 	
 	public BGGXMLWriter(Context context)
 	{
 		this.context = context;
 		r = context.getResources();
-		
-		
 	}
 	
 	public void writeToXml(Game game) throws ParserConfigurationException, TransformerException, IOException

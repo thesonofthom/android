@@ -10,13 +10,10 @@ import com.thesonofthom.myboardgames.Game.PropertyData;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.activities.MainActivity;
-import com.thesonofthom.myboardgames.asynctask.AsyncTaskFixed;
 import com.thesonofthom.myboardgames.asynctask.RetrieveAdditionalResultsTask;
 import com.thesonofthom.myboardgames.asynctask.DialogAsyncTask;
 import com.thesonofthom.myboardgames.asynctask.SaveGamesTask;
 import com.thesonofthom.myboardgames.fragments.GameInfoFragment;
-import com.thesonofthom.myboardgames.Settings;
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Html;
@@ -83,23 +80,14 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 	
 	private GameListAdapter expansionsAdapter;
 	private GameListAdapter baseGamesAdapter;
-	private GameInfoFragment fragment;
 	
 	private Button expansionLoadMoreButton;
 	private Button baseGameLoadMoreButton;
-	//private Button loadCommentsButton;
 	
-	private Settings settings;
 	private LayoutInflater inflater=null;
-	
-	private DialogAsyncTask task;
-	
-	//private  View list_group_game_data;
-	//private  View list_row_game_data;
-	
-	public GameInfoDataAdapter(final GameInfoFragment fragment, final DialogAsyncTask task, final Game game)
+
+	public GameInfoDataAdapter(final GameInfoFragment fragment, final DialogAsyncTask<?> task, final Game game)
 	{
-		this.fragment = fragment;
 		this.context = fragment.getMainActivity();
 		this.game = game;
 		game.getExpansionCache().sort(); //force results to be in correct order
@@ -110,10 +98,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		validInformationArray = new ArrayList<Property>(informationArray.length);
-		
-		//list_group_game_data = inflater.inflate(R.layout.list_group_game_data, null);
-		//list_row_game_data = inflater.inflate(R.layout.list_row_game_data, null);
-		this.task = task;
 		
 		expansionsAdapter = new GameListAdapter(context, game.getExpansionCache(), null, false);
 		expansionLoadMoreButton = new Button(context);
@@ -154,21 +138,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 				}
 			}
 		});
-		
-//		loadCommentsButton = new Button(context);
-//		loadCommentsButton.setText("Load Comments");
-//		loadCommentsButton.setOnClickListener(new View.OnClickListener()
-//		{
-//			@Override
-//			public void onClick(View arg0)
-//			{
-//				RetrieveCommentsTask retrieveCommentsTask = new RetrieveCommentsTask(context, game, task);
-//				retrieveCommentsTask.execute();
-//			}
-//		});
-		
-		
-		settings = new Settings(context);
 		
 		for(Section data : Section.values())
 		{
@@ -221,7 +190,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 	@Override
 	public Object getChild(int groupPosition, int childPosition)
 	{
-		// TODO Auto-generated method stub
 		Section group = groups.get(groupPosition);
 		switch(group)
 		{
@@ -243,8 +211,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 				}
 				return baseGamesAdapter.getItem(childPosition);
 			}
-//			case Comments:
-//				return game.getComments().get(childPosition);
 			default:
 				return game.getList(group.property).get(childPosition).value;
 
@@ -254,7 +220,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 	@Override
 	public long getChildId(int groupPosition, int childPosition)
 	{
-		// TODO Auto-generated method stub
 		Section group = groups.get(groupPosition);
 		switch(group)
 		{
@@ -427,7 +392,6 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 	@Override
 	public boolean hasStableIds()
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -445,5 +409,4 @@ public class GameInfoDataAdapter extends BaseExpandableListAdapter implements Ga
 		}
 		
 	}
-
 }

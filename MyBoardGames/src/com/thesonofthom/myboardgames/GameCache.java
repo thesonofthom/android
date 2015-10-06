@@ -7,13 +7,8 @@ import java.util.List;
 import com.thesonofthom.myboardgames.Game.Property;
 import com.thesonofthom.myboardgames.GameSorter.SortOption;
 import com.thesonofthom.myboardgames.GameSorter.SortOrder;
-import com.thesonofthom.myboardgames.tools.ParcelTools;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
-
-public class GameCache //implements Parcelable
+public class GameCache
 {
 	private static final String TAG = "GameList";
 	private HashMap<Integer, Game> cache;
@@ -211,82 +206,4 @@ public class GameCache //implements Parcelable
 		}
 		return min;
 	}
-	
-	//Parcel Stuff
-//	
-//	public GameCache(Parcel parcel)
-//	{
-//		readFromParcel(parcel);
-//	}
-//
-//	@Override
-//	public int describeContents()
-//	{
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public void writeToParcel(Parcel dest, int flags)
-//	{
-//		dest.writeString(name);
-//		dest.writeInt(currentPosition);
-//		ParcelTools.writeBoolean(dest, useEntireList);
-//		ParcelTools.writeEnum(dest, sortOption);
-//		ParcelTools.writeEnum(dest, sortOrder);
-//		Game[] gameArray = list.toArray(new Game[list.size()]);
-//		dest.writeTypedArray(gameArray, flags);
-//	}
-//	
-//	
-//	public void readFromParcel(Parcel p)
-//	{
-//		//Log.i(TAG, "readFromParcel");
-//		String name = p.readString();
-//		//Log.i(TAG, "name = " + name);
-//		initialize(name);
-//		currentPosition = p.readInt();
-//		//Log.i(TAG, "currentPosition = " + currentPosition);
-//		useEntireList = ParcelTools.readBoolean(p);
-//		//Log.i(TAG, "useEntireList = " + useEntireList);
-//		sortOption = ParcelTools.readEnum(p, SortOption.class);
-//		sortOrder = ParcelTools.readEnum(p, SortOrder.class);
-//		
-//		Game[] gameArray = p.createTypedArray(Game.CREATOR);
-//		for(Game game : gameArray)
-//		{
-//			Log.i(TAG, "game = " + game);
-//			Game actualGame = GamePool.getInstance().get(game.getObjectId()); //ensure only one copy of games
-//			if(actualGame == null)
-//			{
-//				GamePool.getInstance().add(game);
-//				actualGame = GamePool.getInstance().get(game.getObjectId());
-//			}
-//			cache(actualGame);
-//		}
-//		
-////		while(p.dataAvail() > 0)
-////		{
-////			Game game = (Game)p.readParcelable(Game.class.getClassLoader());
-////			Log.i(TAG, "game = " + game);
-////			cache(game);
-////		}
-//	}
-//	
-//	public static final Creator<GameCache> CREATOR = new Creator<GameCache>()
-//	{
-//		@Override
-//		public GameCache createFromParcel(Parcel source)
-//		{
-//			return new GameCache(source);
-//		}
-//
-//		@Override
-//		public GameCache[] newArray(int size)
-//		{
-//			return new GameCache[size];
-//		}
-//
-//	};
-//	
 }

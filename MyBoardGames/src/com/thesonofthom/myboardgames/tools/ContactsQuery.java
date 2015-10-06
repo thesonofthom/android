@@ -2,11 +2,7 @@ package com.thesonofthom.myboardgames.tools;
 
 import java.util.ArrayList;
 
-import com.thesonofthom.myboardgames.Game;
 import com.thesonofthom.myboardgames.GamePool;
-import com.thesonofthom.myboardgames.Game.Property;
-import com.thesonofthom.myboardgames.GamePool.GameGroup;
-
 import android.app.Activity;
 import android.content.CursorLoader;
 import android.database.Cursor;

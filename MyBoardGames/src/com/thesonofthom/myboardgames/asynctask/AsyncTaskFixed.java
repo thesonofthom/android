@@ -1,17 +1,19 @@
 package com.thesonofthom.myboardgames.asynctask;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 import android.util.Log;
+
+
+//had weird issues with the Android emulator with AsyncTask instances not performing as expected.
+//The issues seem to have gone away but I'll leave the code here for now
 
 public abstract class AsyncTaskFixed<Params, Progress, Result> extends AsyncTask<Params, Progress, Result>
 {
 	protected String TAG = "AsyncTaskFixed";
 	
 	private static volatile boolean done = false;
+	
+	private boolean calledFromUiThread = false;
 	
 	public AsyncTaskFixed(String tag)
 	{
@@ -20,8 +22,7 @@ public abstract class AsyncTaskFixed<Params, Progress, Result> extends AsyncTask
 		calledFromUiThread = false;
 	}
 	
-	private boolean calledFromUiThread = false;
-	
+
 	public void setCalledFromUiThread(boolean enable)
 	{
 		calledFromUiThread = enable;
@@ -83,7 +84,6 @@ public abstract class AsyncTaskFixed<Params, Progress, Result> extends AsyncTask
 	@Override
 	protected void onProgressUpdate(Progress... values)
 	{
-		// TODO Auto-generated method stub
 		Log.i(TAG, "onProgressUpdate()...");
 		super.onProgressUpdate(values);
 	}

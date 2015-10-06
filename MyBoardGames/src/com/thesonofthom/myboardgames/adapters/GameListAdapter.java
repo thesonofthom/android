@@ -7,13 +7,9 @@ import com.thesonofthom.myboardgames.GameCache;
 import com.thesonofthom.myboardgames.R;
 import com.thesonofthom.myboardgames.Settings;
 import com.thesonofthom.myboardgames.Game.Property;
-import com.thesonofthom.myboardgames.R.id;
-import com.thesonofthom.myboardgames.R.layout;
 import com.thesonofthom.myboardgames.activities.MainActivity;
-import com.thesonofthom.myboardgames.images.ImageLoader;
 import com.thesonofthom.myboardgames.tools.Filter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;

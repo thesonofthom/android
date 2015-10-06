@@ -15,7 +15,6 @@ public class AllContactsDialogFragment extends ContactListDialogFragment
 	private static final String TAG = "AllContactsDialogFragment";
 	
 	private String mSearchTerm;
-	private boolean mSearchQueryChanged;
 	
 	public AllContactsDialogFragment()
 	{
@@ -47,14 +46,13 @@ public class AllContactsDialogFragment extends ContactListDialogFragment
 			@Override
 			public boolean onQueryTextSubmit(String query)
 			{
-				// TODO Auto-generated method stub
+				//do nothing
 				return true;
 			}
 			
 			@Override
 			public boolean onQueryTextChange(String newText)
 			{
-				// TODO Auto-generated method stub
 				String newFilter = !TextUtils.isEmpty(newText) ? newText : null;
                 if (mSearchTerm == null && newFilter == null) {
                     return true;
@@ -67,7 +65,6 @@ public class AllContactsDialogFragment extends ContactListDialogFragment
              // Updates current filter to new filter
                 mSearchTerm = newFilter;
                 
-                mSearchQueryChanged = true;
                 loader.restartLoader(true);
                 return true;
 			}
@@ -78,7 +75,6 @@ public class AllContactsDialogFragment extends ContactListDialogFragment
 	@Override
 	public CursorLoader getCursorLoader()
 	{
-		// TODO Auto-generated method stub
 		if (mSearchTerm == null) 
 		{
 			return ContactsQuery.getAllContactsLoader(getActivity());

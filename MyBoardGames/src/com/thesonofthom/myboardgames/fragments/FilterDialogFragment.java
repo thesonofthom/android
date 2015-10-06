@@ -5,7 +5,6 @@ import com.thesonofthom.myboardgames.tools.Filter;
 import com.thesonofthom.myboardgames.tools.Filter.FilterOption;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -14,7 +13,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -29,9 +27,6 @@ public class FilterDialogFragment extends DialogFragment
 	{
 		FilterDialogFragment fragment = new FilterDialogFragment();
 		activeFilter = filter;
-//		Bundle args = new Bundle();
-//		args.putParcelable(FILTER, filter);
-//		fragment.setArguments(args);
 		fragment.setTargetFragment((Fragment)listener, 0);
 		return fragment;
 	}
@@ -41,7 +36,7 @@ public class FilterDialogFragment extends DialogFragment
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		filter = activeFilter;//getArguments().getParcelable(FILTER);
+		filter = activeFilter;
 		builder.setTitle("Filter by...").setItems(FilterOption.filterOptions, new OnClickListener()
 		{
 			@Override
@@ -276,7 +271,6 @@ public class FilterDialogFragment extends DialogFragment
 		@Override
 		public void setView(Builder b)
 		{
-			// TODO Auto-generated method stub
 			String[] categories = filter.getAllCategories().toArray(new String[filter.getAllCategories().size()]);
 			
 			selections = new boolean[categories.length];

@@ -8,6 +8,9 @@ import com.thesonofthom.myboardgames.GameSorter.SortOption;
 import com.thesonofthom.myboardgames.GameSorter.SortOrder;
 import com.thesonofthom.myboardgames.adapters.GameAdapter;
 
+/*
+ * Class to store all info about a board game
+ */
 public class Game implements Comparable<Game>
 {
 	private static final String TAG = "Game";
@@ -18,7 +21,6 @@ public class Game implements Comparable<Game>
 	public static final int STATUS_MINIMAL = 1; //at least has object id
 	public static final int STATUS_LIST_INFO = 2; //has enough info to display as a list result
 	public static final int STATUS_FULL = 3; //has all info
-	public static final int STATUS_FULL_WITH_COMMENTS = 4; //has all info + comments
 	
 	public static enum Property
 	{
@@ -36,13 +38,12 @@ public class Game implements Comparable<Game>
 		boardgamehonor("Honors", true), //list
 		boardgameexpansion("Expansions", true), //list (don't include "fan expansion")
 		baseboardgame("Expansion for Base Game", true),
-		//boardgamesubdomain("Subdomain", true),
 		boardgamedesigner("Designers", true),
 		boardgameartist("Artists", true),
 		boardgamemechanic("Mechanics", true),
 		comment("Comment"),
 		owned("Owned"),
-		loanContact_lookup_key("Loan Contact Lookup Key");
+		loanContact_lookup_key("Loan Contact Lookup Key"); //not part of original BGG XML. Used to keep track of who user loaned game to
 		private String publicName;
 		private boolean allowMultiple;
 
@@ -152,7 +153,6 @@ public class Game implements Comparable<Game>
 		GamePool.getInstance().loanGame(this);
 		GameCache cache = GamePool.getInstance().getLoanGameCache(lookupKey);
 		cache.cache(this);
-		//GamePool.getInstance().getLoanGameFilter(lookupKey).recalculateInitialValues(cache);
 	}
 	
 	public boolean isOnLoan()
@@ -168,7 +168,6 @@ public class Game implements Comparable<Game>
 		{
 			GameCache cache = GamePool.getInstance().getLoanGameCache(lookupKey);
 			cache.remove(this);
-			//GamePool.getInstance().getLoanGameFilter(lookupKey).recalculateInitialValues(cache);
 			properties.remove(Property.loanContact_lookup_key);
 			
 			GamePool.getInstance().returnLoanedGame(this);
@@ -215,7 +214,6 @@ public class Game implements Comparable<Game>
 	{
 		return String.format("%d %s (status: %d, properties: %d)", objectid, get(Property.name), status, properties.size());
 	}
-	
 	
 	
 	public boolean contains(Property p, int objectid)
@@ -688,303 +686,4 @@ public class Game implements Comparable<Game>
 			}
 		}
 	}
-//
-//	public class Comment
-//	{
-//		public final String username;
-//		public final String rating;
-//		public final String comment;
-//		
-//		private Comment(String u, String r, String c)
-//		{
-//			username = u;
-//			rating = r;
-//			comment = c;
-//		}
-//	}
-//	
-//
-//	private ArrayList<Comment> comments = new ArrayList<Comment>();
-//	
-//	public void addComment(String u, String r, String c)
-//	{
-//		Comment comment = new Comment(u, r, c);
-//		comments.add(comment);
-//	}
-//	
-//	
-//	public ArrayList<Comment> getComments()
-//	{
-//		return comments;
-//	}
-//	
-	//Parcel stuff
-	
-//	public static enum ParcelMode
-//	{
-//		MODE_LIST_MINIMAL,
-//		MODE_LIST,
-//		MODE_FULL;
-//	}
-//
-//	private ParcelMode parcelMode = ParcelMode.MODE_LIST;
-//	
-//	public void setParcelMode(ParcelMode mode)
-//	{
-//		//allow overriding of the parcel mode if the ordinal is higher
-//		if(parcelMode == null || parcelMode.ordinal() < mode.ordinal())
-//		{
-//			Log.i(TAG, "Setting parcel mode for " + toString() + " to " + mode);
-//			parcelMode = mode;
-//		}
-//	}
-//	
-//	public void clearParcelMode()
-//	{
-//		parcelMode = null;
-//	}
-//	
-//	public Game(Parcel in)
-//	{
-//		readFromParcel(in);
-//	}
-//
-//	@Override
-//	public void writeToParcel(Parcel p, int flags)
-//	{
-//		Log.i(TAG, "Writing " + toString() + " to parcel, mode: " + parcelMode);
-//		ParcelTools.writeEnum(p, parcelMode);
-//		if(parcelMode == null)
-//		{
-//			return;
-//		}
-//		switch(parcelMode)
-//		{
-//		case MODE_LIST:
-//		case MODE_LIST_MINIMAL:
-//			writeListInfoToParcel(p, flags);
-//			break;
-//		case MODE_FULL:
-//			writeAllToParcel(p, flags);
-//			break;
-//		default:
-//			throw new RuntimeException("ERROR! " + toString() + ": setParcelMode() must be called before writing to parcel!");
-//		}
-//		clearParcelMode();
-//	}
-//	
-//	public void readFromParcel(Parcel p)
-//	{
-//		initializeCaches();
-//		parcelMode = ParcelTools.readEnum(p, ParcelMode.class);
-//		Log.i(TAG, "Reading from parcel, mode: " + parcelMode);
-//		if(parcelMode == null)
-//		{
-//			return;
-//		}
-//		
-//		enableDontMarkAsDirtyLock();
-//		switch(parcelMode)
-//		{
-//		case MODE_LIST:
-//		case MODE_LIST_MINIMAL:
-//			readListInfoFromParcel(p);
-//			break;
-//		case MODE_FULL:
-//			readAllFromParcel(p);
-//			break;
-//		default:
-//			throw new RuntimeException("ERROR! " + toString() + ": setParcelMode() must be called before reading from parcel!");
-//		}
-//		GamePool.getInstance().add(this);
-//		disabledontMarkAsDirtyLock();
-//		clearParcelMode();
-//	}
-//	
-//	private void writeListInfoToParcel(Parcel p, int flags)
-//	{
-//		p.writeInt(objectid);
-//		p.writeInt(STATUS_LIST_INFO);
-//		p.writeString(get(Property.name));
-//		p.writeString(get(Property.yearpublished));
-//		p.writeString(get(Property.minplayers));
-//		p.writeString(get(Property.maxplayers));
-//		p.writeString(get(Property.playingtime));
-//		
-//		List<PropertyData> categoryList = getList(Property.boardgamecategory);
-//		boolean categoriesAvailable = categoryList != null && !categoryList.isEmpty();
-//		
-//		List<PropertyData> mechanicsList = getList(Property.boardgamemechanic);
-//		boolean mechanicsAvailable = mechanicsList != null && !mechanicsList.isEmpty();
-//		if(parcelMode == ParcelMode.MODE_LIST && categoriesAvailable && mechanicsAvailable)
-//		{
-//
-//			p.writeInt(categoryList.size());
-//			for(PropertyData data : categoryList)
-//			{
-//				p.writeString(data.value);
-//			};
-//			
-//			p.writeInt(mechanicsList.size());
-//			for(PropertyData data : mechanicsList)
-//			{
-//				p.writeString(data.value);
-//			};
-//		}
-//		else
-//		{
-//			p.writeInt(0);
-//			p.writeInt(0);
-//		}
-//		
-//		p.writeString(get(Property.thumbnail));
-//		ParcelTools.writeBoolean(p, isOwned());
-//		ParcelTools.writeBoolean(p, isOnLoan());
-//		if(isOnLoan())
-//		{
-//			p.writeLong(getLong(Property.loanContact_id));
-//			p.writeString(get(Property.loanContact_lookup_key));
-//		}
-//	}
-//	
-//	private void readListInfoFromParcel(Parcel p)
-//	{
-//		objectid = p.readInt();
-//		status = p.readInt();
-//		add(Property.name, p.readString());
-//		add(Property.yearpublished, p.readString());
-//		add(Property.minplayers, p.readString());
-//		add(Property.maxplayers, p.readString());
-//		add(Property.playingtime, p.readString());
-//		
-//		int numberOfCategories = p.readInt();
-//		for(int i = 0; i < numberOfCategories; i++)
-//		{
-//			add(Property.boardgamecategory, p.readString());
-//		}
-//		
-//		int numberOfMechanics = p.readInt();
-//		for(int i = 0; i < numberOfMechanics; i++)
-//		{
-//			add(Property.boardgamemechanic, p.readString());
-//		}
-//
-//		add(Property.thumbnail, p.readString());
-//		setOwned(ParcelTools.readBoolean(p));
-//		boolean isOnLoan = ParcelTools.readBoolean(p);
-//		if(isOnLoan)
-//		{
-//			loanToContact(p.readLong(), p.readString());
-//		}
-//	}
-//
-//	private void writeAllToParcel(Parcel p, int flags)
-//	{
-//		p.writeInt(objectid);
-//		p.writeInt(status);
-//		ParcelTools.writeBoolean(p, dirty);
-//		int numberOfProperties = 0;
-//		for (Map.Entry<Property, LinkedList<PropertyData>> entry : properties.entrySet()) 
-//		{
-//			numberOfProperties += entry.getValue().size();
-//		}
-//		
-//		p.writeInt(numberOfProperties);
-//		
-//		for (Map.Entry<Property, LinkedList<PropertyData>> entry : properties.entrySet()) 
-//		{
-//			//flatten each property into a separate line
-//			Iterator<PropertyData> iterator = entry.getValue().iterator();
-//			while(iterator.hasNext())
-//			{
-//				PropertyData property = iterator.next();
-//				p.writeString(entry.getKey().name());
-//				p.writeInt(property.objectid);
-//				p.writeString(property.value);
-//			}
-//			
-////			p.writeInt(comments.size());
-////			for(Comment comment : comments)
-////			{
-////				p.writeString(comment.username);
-////				p.writeString(comment.rating);
-////				p.writeString(comment.comment);
-////			}
-//		}
-//		
-//		ParcelMode currentMode = parcelMode;
-//		setParcelMode(ParcelMode.MODE_LIST_MINIMAL);
-//		p.writeParcelable(baseGameCache, flags);
-//		p.writeParcelable(expansionCache, flags);
-//		setParcelMode(currentMode);
-//		
-//	}
-//	
-//	private void readAllFromParcel(Parcel p)
-//	{
-//		objectid = p.readInt();
-//		Log.i(TAG, "readFromParcel: " + objectid);
-//		status = p.readInt();
-//		
-//		dirty = ParcelTools.readBoolean(p);
-//		
-//		int numberOfProperties = p.readInt();
-//		
-//		for(int i = 0; i < numberOfProperties; i++)
-//		{
-//			Property propertyEnum = Property.getProperty(p.readString());
-//			int propertyId = p.readInt();
-//			String data = p.readString();
-//			if(propertyEnum != null)
-//			{
-//				add(propertyEnum, propertyId, data);
-//			}
-//		}
-//		
-//		ParcelMode currentMode = parcelMode;
-//		setParcelMode(ParcelMode.MODE_LIST_MINIMAL);
-//		baseGameCache = p.readParcelable(GameCache.class.getClassLoader());
-//		expansionCache = p.readParcelable(GameCache.class.getClassLoader());
-//		setParcelMode(currentMode);
-//		
-//		Log.i(TAG, baseGameCache.toString());
-//		Log.i(TAG, expansionCache.toString());
-//		
-//		
-////		int numberOfComments = p.readInt();
-////		for(int i = 0; i < numberOfComments; i++)
-////		{
-////			String username = p.readString();
-////			String rating = p.readString();
-////			String commentText = p.readString();
-////			addComment(username, rating, commentText);
-////		}
-//		
-//	}
-//	
-//
-//	
-//	public static final Creator<Game> CREATOR = new Creator<Game>()
-//	{
-//		@Override
-//		public Game createFromParcel(Parcel source)
-//		{
-//			return new Game(source);
-//		}
-//
-//		@Override
-//		public Game[] newArray(int size)
-//		{
-//			return new Game[size];
-//		}
-//
-//	};
-//	
-//	
-//	@Override
-//	public int describeContents()
-//	{
-//		return 0;
-//	}
-//	
 }
