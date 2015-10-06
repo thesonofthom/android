@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <group>
+      <item
+        android:id="@+id/action_loan_game"
+        android:icon="@drawable/ic_action_person"
+        android:showAsAction="ifRoom"
+        android:orderInCategory="1"
+        android:title="@string/action_loan_game"/>
+    <item
+        android:id="@+id/action_add_remove_game"
+        android:icon="@drawable/ic_action_new"
+        android:showAsAction="ifRoom"
+        android:orderInCategory="2"
+        android:title="@string/action_add_game"/>
+    </group>
+    
+    <item
+        android:id="@+id/action_expand_all"
+        android:showAsAction="never"
+        android:orderInCategory="3"
+        android:title="@string/expand_all"/>
+    <item
+        android:id="@+id/action_collapse_all"
+        android:showAsAction="never"
+        android:orderInCategory="4"
+        android:title="@string/collapse_all"/>
+
+</menu>
