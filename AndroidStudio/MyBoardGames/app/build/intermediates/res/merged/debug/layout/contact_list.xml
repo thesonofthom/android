@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    
+    <SearchView
+        android:id="@+id/contact_list_search"
+        android:layout_width="fill_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+    
+    
+    <ListView
+        android:id="@+id/contact_list_view"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/contact_list_search"
+        android:layout_height="wrap_content"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp" />
+   
+</RelativeLayout><!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/layout/contact_list.xml -->

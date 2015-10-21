@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ExpandableListView
+        android:id="@+id/game_info_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000" />
+</RelativeLayout><!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/layout/activity_game_info_data_list.xml -->

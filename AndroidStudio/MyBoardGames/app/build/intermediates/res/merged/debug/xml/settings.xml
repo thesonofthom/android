@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory
+            android:title="@string/setting_category_search">
+            
+        <!--  
+        <CheckBoxPreference
+                android:key="@string/setting_key_detailed_search_results"
+                android:title="@string/setting_title_detailed_search_results"
+                android:summary="@string/setting_summary_detailed_search_results"
+                android:defaultValue="true"/>
+                
+                -->
+        <ListPreference
+                android:key="@string/setting_key_limit_search_results"
+                android:title="@string/setting_title_number_of_search_results"
+                android:summary="@string/setting_summary_number_of_search_results"
+                android:entries="@array/entries_number_of_search_results"
+                android:entryValues="@array/entryvalues_number_of_search_results"
+                android:dialogTitle="@string/setting_dialog_number_of_search_results" 
+                android:defaultValue="10"/>
+    </PreferenceCategory>
+    
+
+	<PreferenceCategory
+            android:title="@string/setting_category_bgg">
+        <EditTextPreference
+                android:key="@string/setting_key_bgg_account"
+                android:title="@string/setting_title_bgg_account"
+                android:summary="@string/setting_summary_bgg_account"
+                android:dialogTitle="@string/setting_dialog_bgg_account" />
+	</PreferenceCategory>
+
+</PreferenceScreen><!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/xml/settings.xml -->

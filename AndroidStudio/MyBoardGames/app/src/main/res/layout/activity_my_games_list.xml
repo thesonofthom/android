@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    
+     <ListView
+        android:id="@+id/loan_game_contact_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#b5b5b5"
+        android:visibility="gone"
+        android:dividerHeight="1dp" />
+          <View          
+      android:id="@+id/loan_game_contact_divider"
+      android:layout_width="fill_parent" 
+      android:layout_height="1px"
+      android:layout_below="@id/loan_game_contact_info"
+      android:visibility="gone"
+      android:background="@android:color/black" />
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"
+   			android:orientation="horizontal"
+   			android:layout_below="@id/loan_game_contact_divider"
+   			android:id="@+id/filterView">
+   			
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:id="@+id/clear_filters_button"
+            android:src="@drawable/ic_action_cancel" />
+        
+         <TextView
+            android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"
+   			android:id="@+id/activeFiltersTextView"
+   			android:text="Active Filters"/>
+    </LinearLayout>
+    
+     <View          
+      android:id="@+id/filter_divider"
+      android:layout_width="fill_parent" 
+      android:layout_height="1px"
+      android:layout_below="@id/filterView"
+      android:background="@android:color/black" />
+    
+    <LinearLayout 
+            android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"
+   			android:orientation="horizontal"
+   			android:id="@+id/my_games_top"
+   			android:layout_below="@id/filter_divider">
+   			
+        <TextView
+            android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+   			android:paddingLeft="5dp"
+   			android:id="@+id/sortTextView"
+   			android:text="Sort by"/>
+        
+
+    
+        <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        
+         <CheckBox 
+            android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+   			android:textSize="10dp"
+   			android:id="@+id/reverseDirectionCheckBox"
+   			android:text="Reverse Order"/>
+        
+        </LinearLayout>
+
+    <ListView
+        android:id="@+id/my_game_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_games_top"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp" />
+    
+    <!-- The remaining views are for when the list is empty -->
+    
+       <ImageView
+           android:id="@+id/sad_face"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:alpha="0.5"
+          android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:src="@drawable/sad_face"/>
+         
+      <TextView
+        android:id="@+id/my_game_list_empty"
+        android:text="You have no games!"
+        android:layout_below="@id/loan_game_contact_divider"
+		android:layout_above="@id/sad_face"
+		android:padding="10dp"
+		android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+      
+            <TextView
+        android:id="@+id/my_game_list_empty_2"
+        android:text="Search for Games now to add games\nor sync your existing list of game from your BoardGameGeek.com account in the Settings!"
+		android:layout_below="@id/sad_face"
+		android:padding="10dp"
+		android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+</RelativeLayout>

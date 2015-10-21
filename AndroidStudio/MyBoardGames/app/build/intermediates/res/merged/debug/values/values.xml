@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="action_list">
+        <item>All Games</item>
+        <item>My Games</item>
+        <item>My Lent Games</item>
+        <item>Seach For Games</item>
+    </string-array>
+    <string-array name="entries_number_of_search_results">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>No Limit</item>
+    </string-array>
+    <string-array name="entryvalues_number_of_search_results">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>-1</item>
+    </string-array>
+    <!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="green">#99cc00</color>
+    <color name="yellow">#ffbb33</color>
+    <!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_add_game">Add Game to Library</string>
+    <string name="action_bar_search">Search</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_loan_game">Loan Game</string>
+    <string name="action_reload_game_list">Reload Game List</string>
+    <string name="action_remove_game">Remove Game from Library</string>
+    <string name="action_settings">Settings</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="app_name">My Board Games</string>
+    <string name="bgg_boardgame_tag">boardgame</string>
+    <string name="bgg_fan_expansion">fan expansion</string>
+    <string name="bgg_objectid_attribute">objectid</string>
+    <string name="bgg_primary_name">primary</string>
+    <string name="bgg_url">http://www.boardgamegeek.com/xmlapi/</string>
+    <string name="bgg_url_game">boardgame/</string>
+    <string name="bgg_url_search">search?search=</string>
+    <string name="bgg_url_user">collection/</string>
+    <string name="bgg_usercollection_tag">item</string>
+    <string name="collapse_all">Collapse All</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="expand_all">Expand All</string>
+    <string name="game_description">Description</string>
+    <string name="game_name">Game Name</string>
+    <string name="game_year">2013</string>
+    <string name="setting_category_bgg">BoardGameGeek.com Settings</string>
+    <string name="setting_category_search">Search Settings</string>
+    <string name="setting_dialog_bgg_account">Enter BoardGameGeek.com username</string>
+    <string name="setting_dialog_number_of_search_results">Choose a limit</string>
+    <string name="setting_key_bgg_account">setting_key_bgg_account</string>
+    <string name="setting_key_detailed_search_results">setting_key_detailed_search_results</string>
+    <string name="setting_key_limit_search_results">setting_key_limit_search_results</string>
+    <string name="setting_summary_bgg_account">Linked username</string>
+    <string name="setting_summary_detailed_search_results">Shows more information on each search result (including a thumbnail)</string>
+    <string name="setting_summary_number_of_search_results">Limit the number of search results that are shown at one time</string>
+    <string name="setting_title_bgg_account">My Account</string>
+    <string name="setting_title_detailed_search_results">Detailed Search Results</string>
+    <string name="setting_title_number_of_search_results">Limit Number of Results</string>
+    <string name="show_more_results">Show More Results...</string>
+    <!-- From: file:/G:/GitHub/android/AndroidStudio/MyBoardGames/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="listViewActivatedStyle">
+        <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+    </style>
+</resources>
